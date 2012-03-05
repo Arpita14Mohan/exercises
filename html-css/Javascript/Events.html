@@ -1,0 +1,121 @@
+ <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+      <title>Events with jQuery</title>
+	  <script src="jquery-1.7.1.min.js" type="text/javascript" ></script>
+      <script type="text/javascript">
+          $(function() {
+		  $('#evtTarget').bind('mouseenter mouseleave', function() {
+			  $(this).toggleClass('highlighted');
+			});
+
+              // Bind highlight function on mouseover & mouseleave event on evtTarget element
+              // unbind highlight function on click event on evtTarget element
+          
+			$('#evtTarget').bind({
+			  click: function() {
+				$(this).toggleClass('mouseover');
+			  },
+			  mouseenter: function() {
+				 $(this).toggleClass('mouseenter');
+			  }
+			});
+		
+         // function highlight(evt) {
+         //     $("#evtTarget").toggleClass("highlighted");
+         // }
+		 
+		 //Bind and Unbind handlers attached to the elements
+		  function aClick() { 
+			$("#Click").show().fadeOut("slow"); 
+			} 
+			$("#bind").click(function () { 
+			$("body").on("click", "#theone", aClick) 
+				.find("#theone").text("Can Click!"); 
+			}); 
+			$("#unbind").click(function () { 
+			$("body").off("click", "#theone", aClick) 
+				.find("#theone").text("Does nothing..."); 
+			}); 
+ 
+			
+		 // Trigger - Execute all handlers and behaviors attached to the matched elements for the given event type.
+			$("button:first").click(function () { 
+			update($("span:first")); 
+			}); 
+			$("button:last").click(function () { 
+			$("button:first").trigger('click'); 
+			 
+			update($("span:last")); 
+			}); 
+			 
+			function update(j) { 
+			var n = parseInt(j.text(), 10); 
+			j.text(n + 1); 
+			} 
+			
+		//Delegate - Click a paragraph to add another. Note that .delegate() attaches a click event handler to all paragraph
+		//even new ones. 
+		$("body").delegate("p", "click", function(){ 
+		$(this).after("<p>Another Delegate!</p>"); 
+		}); 
+		
+		//On -  Attach an event handler function for one or more events to the selected elements.
+		$("p").on("click", function(){ 
+		alert( $(this).text() ); 
+		});
+
+		  });
+      </script>
+      <style type='text/css'>
+          .normal {
+              width: 300px;
+              height: 200px;
+              background-color: Yellow;
+              font-size: 18pt;
+          }
+
+          .highlighted {
+              background-color: Red;
+          }
+		  .mouseover {
+              background-color: Blue;
+          }
+		  .mouseenter {
+              background-color: Green;
+          }
+		  button { 
+				margin:5px; 
+		  } 
+		  button#theone { 
+				color:red; background:yellow; 
+			} 
+		  p { 
+		  background:red; 
+		  font-weight:bold; 
+		  cursor:pointer;  
+          padding:5px; 
+		  } 
+		p.over {
+		background: #ccc; 
+		} 
+
+
+      </style>
+  </head>
+  <body>
+  <h1>Binding Event Example</h1>
+  <div id="evtTarget" class="normal">Mouse over this div to see the effect. Click on it to unbind the mouseover.</div>
+  <br/>
+  <p>Click me - Delegates Functionality + On Operation</p> 
+	<button id="theone">Does nothing...</button>
+	<button id="bind">Bind Click</button>  
+	<button id="unbind">Unbind Click</button> 
+	<div id="Click" style="display:none;">Click!</div> 
+
+	<div><span>0</span> button #1 clicks.</div> 
+	 
+	<div><span>0</span> button #2 clicks.</div> 
+
+
+  </body>
+  </html>
