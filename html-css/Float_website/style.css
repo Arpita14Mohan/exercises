@@ -1,0 +1,14 @@
+p#left{
+float: left;
+margin: 2px;
+padding: 1px;
+}
+#right {
+float: right;
+margin: 2px;
+padding: 1px;
+}
+#clear{
+clear: both;
+margin: 2px;
+}

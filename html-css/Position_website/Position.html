@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <title>CSS Positioning</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+
+    <div id="header">
+      <div>Logo &copy;</div>
+      <h1><abbr>CSS</abbr> Positioning</h1>
+    </div>
+
+    <div id="content">
+      <h2>What Is This?</h2>
+
+      <p>This example page shows all the four types of positioning that are
+      available in <abbr>CSS :</abbr></p>
+
+      <ul>
+        <li>static (content)</li>
+        <li>relative (drop cap in block quotation)</li>
+        <li>absolute (the sidebar to the right)</li>
+        <li>fixed (header, footer, left-hand menu)</li>
+      </ul>
+
+      <h2>Fixed and Absolute Positioning</h2>
+      <p>Both the header (logo and page heading) and the footer (copyright
+      statement) have fixed positioning, at the top and bottom of the screen,
+      respectively. If you scroll down the page you will see that the content
+      and the sidebar will scroll, but the header and footer will stay in place.
+      </p>
+
+      <p>The navigation menu on the left also has a fixed position, so it
+      will remain in place when the page is scrolled. The sidebar to the right,
+      on the other hand, is absolutely positioned and will scroll along with
+      the content.</p>
+
+      <h2>Relative Positioning</h2>
+
+      <p>In order to show how relative positioning works, the block quotation
+      below uses a floating <em>and</em> relatively positioned drop cap.
+      By floating it to the left it we create a drop cap and by using relative
+      positioning we can nudge it upward and to the left and create a cut-out
+      effect.</p>
+	
+
+      <blockquote>
+        <p><span>T</span>he containing block in which the root element lives is
+        chosen by the user agent. (It could be related to the viewport.) This
+        containing block is called the initial containing block.</p>
+      </blockquote>
+	
+	  <blockquote>
+        <p style="height:48px">The containing block in which the root element lives is
+        chosen by the user agent. The containing block in which the root element lives is
+        chosen by the user agent(It could be related to the viewport.) (It could be related to the viewport.)containing block containing a block is called the initial containing bloc <span id="rightFloat">K</span></p>
+      	</blockquote>
+      
+      <h2>Z-Index</h2>
+
+      <p>If you look at the page source you will see that I have set
+      <code>z-index:1</code> for the header. Why?</p>
+
+      <p>The header, sidebar, menu and footer are all positioned, and they
+      occur in this order in the markup. They have the same containing block
+	  which means they belong to the same stacking context.</p>
+
+      <p>Without the z-index setting for the header, the sidebar will slide
+      on top of the header as you scroll down the page.</p>
+
+      <p>By increasing the z-index for the header I can put it in front of the
+      sidebar, so that the latter will slide underneath the former as you
+      scroll.</p>
+
+      <p>I could also have achieved a similar effect in this case by setting
+      <code>z-index:-1</code> for the sidebar.</p>
+
+      </div>
+
+    <div id="sidebar">
+      <p>The sidebar is positioned absolutely at the right-hand edge of the
+      page, so it will scroll with the main content.</p>
+    </div>
+
+    <ul id="nav">
+      <li><a href="#">Home <span>The site's home page</span></a></li>
+      <li><a href="#">News <span>News and product updates</span></a></li>
+      <li><a href="#">Products <span>The products we offer for sale</span></a></li>
+
+      <li><a href="#">Services <span>The services we offer our clients</span></a></li>
+      <li><a href="#">About Us <span>About the company</span></a></li>
+      <li><a href="#">Contact <span>Contact us and tell us what you think</span></a></li>
+    </ul>
+
+    <address>&copy; Copyright 2012.Design by Arpita Mohan</address>
+
+  </body>
+</html>
