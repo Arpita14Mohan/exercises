@@ -1,0 +1,196 @@
+  <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  <title>Document</title>
+  <!-- Add JQuery here -->
+  <script src="jquery-1.7.1.min.js" type="text/javascript" ></script>
+  <script type="text/javascript">
+      $("document").ready(function() {
+          // Example
+          // Use basic selectors, basic filters, attribute selectors, content filters, hierarchy filters
+		  
+		  //Selecting elements by type
+          $('#PButton').toggle(function() {
+              $('p').css("border", "3px solid red");
+          }, function() {
+              $('p').css("border", "");
+          });
+		  
+		  //Selecting elements by ID 
+		  $('#ListButton').toggle(function() {
+              $('#list').css("border", "3px solid green");
+          }, function() {
+              $('#list').css("border", "");
+          });
+		  
+		  //Selecting all elements 
+		  $('#AllButton').toggle(function() {
+              $('*').css("border", "3px solid blue");
+          }, function() {
+              $('*').css("border", "");
+          });
+		  
+		    //Selecting all elements by class
+		  $('#ClassButton').toggle(function() {
+              $('.myClass').css("border", "3px solid yellow");
+          }, function() {
+              $('.myClass').css("border", "");
+          });
+		  
+		  //Selecting elements by Attributes
+		  $('#AttributeButton1').toggle(function() {
+			 $('p[style*="red"]').css("border", "3px dotted black");
+          }, function() {
+              $('p[style*="red"]').css("border", "");
+          });
+		  
+		  //Selecting elements by Attributes delimited by spaces.
+			$('#AttributeButton2').toggle(function() {
+			 $('input[value~="Select"]').css("border", "3px dotted black");
+          }, function() {
+              $('input[value~="Select"]').css("border", "");
+          });
+		
+		 //Selecting even elements of the list(Selection based on Index)
+			$('#EvenListButton').toggle(function() {
+			 $("li:even").css("border", "3px dotted black");
+          }, function() {
+              $("li:even").css("border", "");
+          });
+		  
+		  //Selecting odd elements of the list(Selection based on Index)
+			$('#OddListButton').toggle(function() {
+			 $("li:odd").css("border", "3px dotted black");
+          }, function() {
+              $("li:odd").css("border", "");
+          });
+		  
+		  //Selecting first elements of the list
+			$('#FirstListButton').toggle(function() {
+			 $("li:first").css("border", "3px solid black");
+          }, function() {
+              $("li:first").css("border", "");
+          });
+		  
+		  //Selecting last elements of the list
+			$('#LastListButton').toggle(function() {
+			 $("li:last").css("border", "3px solid black");
+          }, function() {
+              $("li:last").css("border", "");
+          });
+		  
+		   //Selecting contains elements of the selector
+			$('#ContainSelectorButton').toggle(function() {
+			 $("li:contains('milk')").css("text-decoration", "underline"); 
+          }, function() {
+              $("li:contains('milk')").css("text-decoration", ""); 
+          });
+		  
+		   //Selecting empty selector
+			$('#EmptySelectorButton').toggle(function() {
+			  $("li:empty").css("border", "3px solid black");
+          }, function() {
+              $("li:empty").css("border", "");
+          });
+		  
+		  //Has Attribute Selector [name]
+			$('div[id]').one('click', function(){ 
+			var idString = $(this).text() + ' Div Id = ' + $(this).attr('id'); 
+			$(this).text(idString); 
+          });
+		  
+		  //Selecting Hidden elements 
+			  $('#HiddenSelectorButton').toggle(function() {
+			  $("span:last").text("Found " + $("input:hidden").length + " hidden inputs.");
+			  }, function() {
+			$('span').css("border", "3px solid black");
+		  });
+		  
+		  //Selects all direct child elements specified by "child" of elements specified by "parent".
+			  $('#ChildSelectorButton').toggle(function() {
+			  $("ul.topnav > li").css("border", "3px double red");
+			  }, function() {
+			$("ul.topnav > li").css("border", "3px solid black");
+		  });
+		  
+		    //Descendant Selector (“ancestor descendant”)
+			  $('#DescendantSelectorButton').toggle(function() {
+			  $("form input").css("border", "2px dotted blue");
+			  }, function() {
+			$("form input").css("border", "");
+		  });
+		  
+		  
+      });
+  </script>
+  <style type="text/css">
+  .a { color: Navy; }
+  .b { color: Maroon; }
+  form { border:2px green solid; padding:2px; margin:0;  
+         background:#efe; } 
+
+  </style>
+  </head>
+  <body>
+      <ul class="topnav" id="list">
+          <li class="a">man-news</li>
+          <li class="a">milk man
+		  <ul><li>Nested item 1</li><li>Nested item 2</li><li>Nested item 3</li></ul></li>
+          <li class="b">letterman2</li>
+          <li class="b">newmilk</li>
+		  <li class="b"></li>
+      </ul>
+	   
+	  <div class="myClass">
+      <p class="a" style="color:red">This is paragraph 1</p>
+      <p>This is paragraph 2</p>
+      <p class="b">This is paragraph 3</p>
+      <p>This is paragraph 4</p>
+	  </div>
+	  
+	  <br/><br/>
+	  <div id="Arpita">
+      <p>This is paragraph 2</p>
+      <p>This is paragraph 4</p>
+	  </div> 
+
+	  <form> 
+     <input type="hidden" /> 
+     <input type="hidden" /> 
+	 <input type="hidden" /> 
+     </form>
+	  <span> </span>
+	<br/>
+	<form> 
+    <label>Child:</label> 
+    <input name="name" /> 
+     <fieldset> 
+      <label>Grandchild:</label> 
+      <input name="newsletter" /> 
+    </fieldset> 
+ 
+  </form> 
+
+	 <br/>
+      <!-- Add multiple buttons for each selector -->
+	  <input type="button" id="ListButton" value="Select All Lists" />
+      <input type="button" id="PButton" value="SelectAll Ps"  />
+	  <input type="button" id="AllButton" value="Select All"  />
+	  <input type="button" id="ClassButton" value="Elements by Class"  />
+	  <br/><br/>
+	  <input type="button" id="AttributeButton1" value="Elements by Attributes 1"  />
+	  <input type="button" id="AttributeButton2" value="Elements by Attributes 2"  />
+	  <br/><br/>
+	  <input type="button" id="EvenListButton" value="Even List"  />
+	  <input type="button" id="OddListButton" value="Odd List"  />
+	  <input type="button" id="FirstListButton" value="First List"  />
+	  <input type="button" id="LastListButton" value="Last List"  />
+	  <br/><br/>
+	  <input type="button" id="ContainSelectorButton" value="Contains Selectors"  />
+	  <input type="button" id="EmptySelectorButton" value="Empty Selectors"  />
+	  <input type="button" id="HasSelectorButton" value="Has Selectors"  />
+	  <input type="button" id="HiddenSelectorButton" value="Hidden Selectors"  />
+	  <input type="button" id="ChildSelectorButton" value="Child Selectors"  />
+	  <input type="button" id="DescendantSelectorButton" value="Descendant Selector"  />
+
+  </body>
+  </html>
