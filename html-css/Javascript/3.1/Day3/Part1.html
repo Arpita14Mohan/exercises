@@ -1,0 +1,265 @@
+	<html xmlns="http://www.w3.org/1999/xhtml">
+	  <head>
+		  <title>Document</title>
+		  <!-- Include JQuery Library -->
+		  <script src="jquery-1.7.1.min.js" type="text/javascript" ></script>
+		  <script type="text/javascript">
+			  $("document").ready(function() {
+			  
+			  
+			  //Wrap a new div around all of the paragraphs. 
+				$('#button1').toggle(function() {
+					  $("ul").wrap(document.createElement("fieldset"));
+				  }, function() {
+					  $("ul").unwrap(document.createElement("fieldset"));
+				  });
+				  
+			  //The a and b classes are removed from first paragraph, while selected is added.
+			  $('#button2').toggle(function() {
+					   $("#AddRemoveClass").addClass("a").css("border", "3px solid red");
+				  }, function() {
+					  $("#AddRemoveClass").removeClass("a").css("border", "");
+				  });
+			 
+			  
+			  //Adds the classes "selected" and "highlight" to the matched elements. 
+			  $('#button3').toggle(function() {
+						$("p:last").addClass("selected highlight").css("border", "3px solid red"); 
+				  }, function() {
+					   $("p:last").removeClass("selected highlight").css("border", "");
+				  });
+			 
+			  
+			  // Pass in a function to .addClass() to add the "b" class to a div that already has a "a" class. 
+			  $("#addClass").addClass(function(index, currentClass) { 
+				var addedClass; 
+				if ( currentClass === "a" ) { 
+				  addedClass = "b"; 
+				  $("p").text("There is one green div"); 
+				} 
+				return addedClass; 
+				});
+				
+				//Inserts some HTML after last paragraph. 
+				  $('#button4').click(function() {
+					$("p:last").after("<b>Hello - Inserts HTML text after last paragraph.</b>").css("border", "3px solid red");
+				  });
+
+				//Inserts a DOM element after first paragraph. 
+				 $('#button5').toggle(function() {
+					$("p:first").after( document.createTextNode("Hello - Inserts a DOM element after first paragraph") ).css("border", "3px solid red");
+				  }, function() {
+				  });
+
+				//Appends some HTML to all paragraphs. 
+				$('#button6').toggle(function() {
+				   $("li.a").append("<strong> Text appended to the end with class a. </strong>").css("border", "3px solid red");
+				  }, function() {
+					  $("li.a").append("").css("", "");
+				  });
+				 
+
+				//Appends a jQuery object (similar to an Array of DOM Elements) to all paragraphs.
+				$('#button7').toggle(function() {
+				   $("li:first").append( $("h3") ).css("border", "3px solid red");
+				  }, function() {
+					  $("li:first").append( $("h3") ).css("", "");
+				  });
+				
+				
+				//Appends all spans to the element with the ID "foo"
+				$('#button8').toggle(function() {
+				  $("#labelchckbox3").appendTo("#foo").css("border", "3px solid red");
+				  }, function() {
+					  $("#labelchckbox3").appendTo("#foo").css("", "");
+				  });
+				
+				
+				//Get the value of an attribute for the first element in the set of matched elements.
+				var title = $("em").attr("title");
+				$("#attr1").text(title);
+				
+				//Inserts some HTML before last paragraphs.
+				$('#button10').toggle(function() {
+				 $("p:last").before("<b>Inserts some HTML before last paragraph</b>").css("border", "3px solid red");
+				  }, function() {
+
+				  });
+
+				// Inserts a jQuery object (similar to an Array of DOM Elements) before first paragraphs.
+				$('#button11').toggle(function() {
+				 $("p:first").before( $("#attr") ).css("border", "3px solid red");
+				  }, function() {
+				  $("p:first").before( $("#attr") ).css("border", "");
+				  });
+
+				//Clones all b elements (and selects the clones) and prepends them to all paragraphs.
+				$('#button12').toggle(function() {
+				 $("strong").clone().prependTo("#clone").css("border", "3px solid red");
+				  }, function() {
+				  });
+				
+				//WrapAll an HTML structure around all elements in the set of matched elements.
+				$('#button13').toggle(function() {
+					  $("p").wrapAll(document.createElement("fieldset"));
+				  }, function() {
+					 $("p").unwrap(document.createElement("fieldset"));
+				  });
+				  
+				//Wrap an HTML structure around the content of each element in the set of matched elements.
+				$('#button14').toggle(function() {
+				   $("#list1").wrapInner(document.createElement("b")).css("border", "3px solid red");
+				  }, function() {
+					 $("#list1").unwrap().css("border", "");
+				  });
+				  
+				  
+				 //Wrap an HTML structure around the content of each element in the set of matched elements.
+				$('#button15').toggle(function() {
+				   $("p").get(0);
+				  }, function() {
+
+				  }); 
+				  
+				 //Reduce the set of matched elements to those that match the selector or pass the function's test.
+				 //QUESTION : Not filtering the last element of the list.
+				  $('#button16').toggle(function() {
+				   $("#list1").css("background", "#c8ebcc").filter(":last").css("border", "3px solid red"); 
+				  }, function() {
+					 $("#list1").unwrap().css("border", "");
+				  });
+				  
+				  // Get the current horizontal position of the scroll bar for the first element in the set of matched elements.
+				  $('#button17').toggle(function() {
+				   $("#list1").scrollLeft(1).css("border", "3px solid red");
+				  }, function() {
+					$("#list1").unwrap().css("border", "");
+				  }); 
+				  
+				  // Get the current horizontal position of the scroll bar for the first element in the set of matched elements.
+				  $('#button18').click(function() {
+				   $("ul").has("li");
+				   alert("Has Selector");
+				  });
+				  
+				  //Selects all paragraphs, then slices the selection to include only the first and second element.
+				 $('#button19').toggle(function() {
+				   $("li").slice(0, 2).wrapInner("<b></b>").css("background", "yellow");
+				  }, function() {
+					$("li").slice(0, 2).contents().contents().unwrap();
+				  }); 			  
+				  
+				 //CSS
+				 $("#cssAttr").click(function () {
+				  var color = $(this).css("background-color");
+				  $("#result").html("That div is <span style='color:" +
+									 color + ";'>" + color + "</span>.");
+				});
+
+				//Remove the set of matched elements from the DOM.
+				 $("#cssAttr").click(function(){
+				  $(this).toggleClass("off");
+				});
+				var p;
+				$("button").click(function(){
+				  if ( p ) {
+					p.appendTo("body");
+					p = null;
+				  } else {
+					p = $("#cssAttr").detach();
+				  }
+				});
+				
+				//Get the HTML contents of the first element in the set of matched elements.
+				
+				 $("#tag").click(function () {
+				  var htmlStr = $(this).html();
+				  $(this).text(htmlStr);
+				});
+				
+				
+				//Get the current coordinates of the first element in the set of matched elements, relative to the offset parent.
+				var p = $("p:first");
+				var position = p.position();
+				$("p:last").text( "left: " + position.left + ", top: " + position.top );
+
+				  // Change html,
+				  // Add handling for creating elements, append, prepend and warp around elements
+			  });
+		  </script>
+		  <style type="text/css">
+			.a { color: Navy; }
+			.b { color: Maroon; }
+			p { margin: 8px; font-size:16px; } 
+			  .selected { color:blue; background:yellow; } 
+			  .highlight { color:white; background:green; } 
+			em { color:blue; font-weight;bold; }
+			#attr1 {color:red; }}
+			#cssAttr { width:60px; height:60px; margin:5px; float:left; }
+			fieldset {border: 2px solid blue; } 
+
+		  </style>
+	  </head>
+	  <body>
+	  <div id="foo">FOO! </div> 
+	  <h3 >Appends a jQuery</h3>
+		  <ul id="list1">
+			  <li class="a">item 1</li>
+			  <li class="a">item 2</li>
+			  <li class="b">item 3</li>
+			  <li class="b">item 4</li>
+		  </ul>
+		  
+		  <div>
+		   <input id="Checkbox1" type="checkbox" checked="checked"/><label for="Checkbox1">Widgets</label><br/>
+		   <input id="Checkbox2" type="checkbox"/><label for="Checkbox2">Hibbity Jibbities</label><br/>
+		   <input id="Checkbox3" type="checkbox" checked="checked"/><label for="Checkbox3" id="labelchckbox3">SplashBangers</label>
+		   <br/>
+		   <input id="Checkbox4" type="checkbox"/><label for="Checkbox4">Whatzits</label>
+		  </div> 
+		  <div id= ="addClass">
+		  <p id="AddRemoveClass">The a and b classes are removed from first paragraph, while selected is added.</p>
+		  <p class="a">Pass in a function to .addClass() to add the "b" class to a div that already has a "a" class.</p>
+		  <p class="b">This is paragraph 3</p>
+		  <p>This is only adding highlight class and not selected class - QUERY!!!</p>
+		  </div>
+		  <strong>Hello World!!!</strong><p id="clone">, how are you?</p>
+		  <span id="attr">
+			Inserts a jQuery object (similar to an Array of DOM Elements) before first paragraphs. <em title="huge, gigantic">large</em> dinosaur...
+		  </span>
+		The title of the emphasis is:<div id="attr1"></div>
+		<h2> CSS Functionality </h2>
+			<span id="result">&nbsp;</span>
+			<div id="cssAttr" style="background-color:blue; width:60px; height:60px; margin:5px; float:left;"></div>
+			 
+		<p id="tag">
+		<b>Click</b> to change the <span id="tag">html</span>
+		<br/><br/>
+		<p id="insertAfterP"> Insert every element in the set of matched elements after and before the target. </p>
+
+		<input type="button" id="button1" value="Wrap/Unwrap"/>
+		<input type="button" id="button2" value="Add/Remove Classes"/>
+		<input type="button" id="button3" value="Add/Remove Classes to Matched Elements"/><br/>
+		<input type="button" id="button4" value="Insert HTML"/>
+		<input type="button" id="button5" value="Insert DOM Element"/>
+		<input type="button" id="button6" value="Append HTML"/>
+		<input type="button" id="button7" value="Append JQuery"/>
+		<input type="button" id="button8" value="Append To"/><br/>
+		<input type="button" id="button10" value="Before HTML"/>
+		<input type="button" id="button11" value="DOM Before HTML"/>
+		<input type="button" id="button12" value="Clone & Prepend To"/>
+		<input type="button" id="button13" value="WrapAll / UnwrapAll"/>
+		<input type="button" id="button14" value="WrapInner"/><br/>
+		<input type="button" id="button15" value="Get with Index"/>
+		<input type="button" id="button16" value="Filter - QUESTION"/>
+		<input type="button" id="button17" value="Scroll Left"/>
+		<input type="button" id="button18" value="Has Selector"/>
+		<input type="button" id="button19" value="Slice + WrapInner"/><br/>
+		<button>Attach/detach Blue Box</button>
+
+
+	  </body>
+	  </html>
+
+	  
+	  
