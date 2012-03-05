@@ -28,20 +28,13 @@
               });
 			
 						
-			//Selects all elements of type file. - Not Working
+			//Selects all elements of type file. 
 			$('#button4').toggle(function() {
-                   $(type="file").css({background:"yellow", border:"3px red solid"});
+                   $("input:file").css({background:"yellow", border:"3px red solid"});
               }, function() {
                  $("input:file").css({background:"", border:""});
               });
 			  
-			//Focus Selector - Not Working
-			$("#myId").delegate( "*", "focus blur", function( event ) { 
-				var elem = $( this ); 
-				setTimeout(function() { 
-				   elem.toggleClass( "focused", elem.is( ":focus" ) ); 
-				}, 0); 
-			});
 			
 			//Selects all elements of type text.
 			 $('#button5').toggle(function() {
@@ -72,13 +65,19 @@
 			countChecked(); 
 			$(":checkbox").click(countChecked); 
 			
-			
+			//Disabled Element
+			//Selects all elements of type file. - Not Working
+			$('#button6').toggle(function() {
+                   $("#Text1").css({background:"yellow", border:"3px red solid"});
+              }, function() {
+                 $("#Text1").css({background:"", border:""});
+              });
+			  
 			//Selects all elements that are disabled.
 			$("input:disabled").val("Disabled");
 			//Selects all elements that are enabled.
 			$("input:enabled").val("Enabled");
 
-			
 		});
       </script>
       <style type="text/css">
@@ -150,20 +149,7 @@
                       for="Checkbox1">SplashBangers</label><br/>
                   <input id="Checkbox4" type="checkbox"/><label for="Checkbox1">Whatzits</label></td>
           </tr>
-		  <td>
-                  Greenzone Options?
-              </td>
-		<td>
-		<select name="garden" multiple="multiple"> 
- 		<option>Flowers</option> 
-		<option selected="selected">Shrubs</option> 
-		<option>Trees</option> 
-		<option selected="selected">Bushes</option> 
-		<option>Grass</option> 
-		<option>Dirt</option> 
-	    </select> 
 
-		</td>
           <tr>
               <td class="style2">
                   Comments:
@@ -202,5 +188,6 @@
   <br/><br/>
   <input type="button" id="button4" value="File Selector"/>
   <input type="button" id="button5" value="Text Selector"/>
+  <input type="button" id="button6" value="Disabled Selector"/>
   </body>
   </html>
